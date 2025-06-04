@@ -1,0 +1,11 @@
+---
+const { url } = Astro.props;
+---
+
+<a
+  href={url}
+  class="text-secondary hover:text-primary whitespace-nowrap transition-all duration-150 hover:underline"
+>
+  <slot />
+  <span>↗</span>
+</a>

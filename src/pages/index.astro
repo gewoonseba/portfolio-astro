@@ -1,4 +1,6 @@
 ---
+import H2Underline from "../components/H2Underline.astro";
+import TextLink from "../components/TextLink.astro";
 import Layout from "../layouts/Layout.astro";
 
 const title = "Gewoon Seba | Design";
@@ -6,11 +8,34 @@ const description = "Designer with a soft spot for code";
 ---
 
 <Layout title={title} description={description}>
-  <section class="py-4">
-    <h1
-      class="text-huge flex w-full items-center justify-center text-center font-semibold"
-    >
-      Gewoon Seba
+  <section>
+    <h1 class="text-huge w-full font-semibold tracking-tighter">
+      Gewoon Seba.
     </h1>
+  </section>
+  <section class="max-w-prose space-y-1">
+    <p>
+      Hi there, I&apos;m Seba. I design things and I build things. Currently at{
+        " "
+      }
+      <TextLink url="https://www.smooved.be">Smooved</TextLink>
+      .{" "}
+    </p>
+    <p>
+      I believe that details matter, form is also a function and an excellent
+      product sells itself. I&apos;m driven by curiosity and a desire to
+      continually improve my craft.
+    </p>
+  </section>
+  <section>
+    <H2Underline> Let&apos;s talk </H2Underline>
+    <p class="max-w-prose pt-4">
+      For any inquiries, send me an e-mail over at{" "}
+      <TextLink url="mailto:seba@gewoonseba.com?subject=Hi%20👋">
+        seba@gewoonseba.com
+      </TextLink>{" "}
+      or book a meeting with me on{" "}
+      <TextLink url="https://cal.com/gewoonseba/30min">cal.com</TextLink>
+    </p>
   </section>
 </Layout>

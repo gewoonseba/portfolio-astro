@@ -13,7 +13,9 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-primary text-primary">
+  <body
+    class="bg-primary text-primary max-w-screen-3xl 3xl:mx-auto min-h-dvh px-4 text-base md:px-8"
+  >
     <slot />
   </body>
 </html>
