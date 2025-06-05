@@ -1,0 +1,17 @@
+---
+
+---
+
+<h1>
+  <slot />
+</h1>
+
+<style is:inline>
+  h1 {
+    /* https://chrisburnell.com/clamp-calculator/ */
+    font-size: clamp(3.6rem, -0.353rem + 16vw, 19rem);
+    line-height: 0.8;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+  }
+</style>

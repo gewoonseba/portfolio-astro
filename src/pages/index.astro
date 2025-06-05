@@ -1,4 +1,5 @@
 ---
+import H1Hero from "../components/H1Hero.astro";
 import H2Underline from "../components/H2Underline.astro";
 import TextLink from "../components/TextLink.astro";
 import Layout from "../layouts/Layout.astro";
@@ -9,11 +10,9 @@ const description = "Designer with a soft spot for code";
 
 <Layout title={title} description={description}>
   <section>
-    <h1 class="text-huge w-full font-semibold tracking-tighter">
-      Gewoon Seba.
-    </h1>
+    <H1Hero>Gewoon Seba.</H1Hero>
   </section>
-  <section class="max-w-prose space-y-1">
+  <section class="max-w-prose space-y-4">
     <p>
       Hi there, I&apos;m Seba. I design things and I build things. Currently at{
         " "

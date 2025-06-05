@@ -12,10 +12,6 @@
 
   --text-base: 1.125rem;
   --text-base--line-height: 1.6;
-
-  /* https://chrisburnell.com/clamp-calculator/ */
-  --text-huge: clamp(3.5rem, -0.353rem + 16vw, 19.375rem);
-  --text-huge--line-height: 0.8;
 }
 
 /* MARK: - Layout */
