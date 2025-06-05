@@ -35,11 +35,17 @@
   --neutral-100-5: color-mix(in srgb, var(--neutral-100) 5%, transparent);
 
   --background-color-primary: var(--neutral-900);
+  --background-color-content-primary: var(--neutral-100);
 
   --text-color-primary: var(--neutral-100);
   --text-color-secondary: var(--neutral-200);
 
   --border-color-primary: var(--neutral-100-5);
+}
+
+/* MARK: - Custom utilities */
+@utility uppercase-tight {
+  @apply tracking-tight uppercase;
 }
 
 /* MARK: - Global Styles */
@@ -48,7 +54,7 @@ html {
 }
 
 h2 {
-  @apply text-primary text-sm leading-none font-semibold tracking-tight uppercase;
+  @apply uppercase-tight text-primary text-sm leading-none font-semibold;
 }
 
 p {
