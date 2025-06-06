@@ -1,0 +1,11 @@
+---
+import IconLink from "../buttons/IconLink.astro";
+import BlueSky from "../icons/BlueSky.astro";
+const { className } = Astro.props;
+---
+
+<div class:list={["flex gap-2", className]}>
+  <IconLink href="https://bsky.app/profile/gewoonseba.com">
+    <BlueSky class="text-secondary size-6" />
+  </IconLink>
+</div>

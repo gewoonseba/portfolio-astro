@@ -1,0 +1,14 @@
+---
+const { url } = Astro.props;
+---
+
+<a
+  href={url}
+  class:list={[
+    "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md",
+    "hover:bg-btn-secondary-hover active:bg-btn-secondary-hover",
+    "transition-colors duration-150",
+  ]}
+>
+  <slot />
+</a>
