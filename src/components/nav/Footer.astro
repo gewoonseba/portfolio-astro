@@ -1,21 +1,21 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
 
+const { class: className } = Astro.props;
+const { pathname } = Astro.url;
 const paths = [
   { path: "/", label: "Home" },
   { path: "/photos", label: "Photos" },
 ];
 
-const { pathname } = Astro.url;
-
-// Improved active link detection
 const isActive = (path: string) => pathname === path;
-
-console.log(pathname);
 ---
 
 <footer
-  class="sticky top-full bottom-0 grid justify-items-center gap-1 pb-2 md:grid-cols-3"
+  class:list={[
+    className,
+    "grid justify-items-center gap-1 pb-2 md:grid-cols-3",
+  ]}
 >
   <nav class="flex items-center gap-4 md:justify-self-start">
     {
