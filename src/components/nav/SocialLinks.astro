@@ -1,11 +1,19 @@
 ---
 import IconLink from "../buttons/IconLink.astro";
 import BlueSky from "../icons/BlueSky.astro";
+import GitHub from "../icons/GitHub.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
 const { className } = Astro.props;
 ---
 
 <div class:list={["flex gap-2", className]}>
   <IconLink href="https://bsky.app/profile/gewoonseba.com">
     <BlueSky class="text-secondary size-6" />
+  </IconLink>
+  <IconLink href="https://github.com/gewoonseba">
+    <GitHub class="text-secondary size-6" />
+  </IconLink>
+  <IconLink href="https://www.linkedin.com/in/sebastian-stoelen-43b605b4/">
+    <LinkedIn class="text-secondary size-6" />
   </IconLink>
 </div>

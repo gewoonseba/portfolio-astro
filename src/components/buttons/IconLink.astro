@@ -1,9 +1,10 @@
 ---
-const { url } = Astro.props;
+const { href } = Astro.props;
 ---
 
 <a
-  href={url}
+  href={href}
+  target="_blank"
   class:list={[
     "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md",
     "hover:bg-btn-secondary-hover active:bg-btn-secondary-hover",
