@@ -1,13 +1,75 @@
 ---
 import ContactLink from "../buttons/ContactLink.astro";
+import MenuButton from "../buttons/MenuButton.astro";
 import LogoLink from "./LogoLink.astro";
 import NavLinks from "./NavLinks.astro";
 ---
 
 <header
-  class="border-secondary grid h-14 grid-cols-3 items-center rounded-xl border px-5"
+  id="navbar"
+  class="border-secondary grid grid-cols-2 md:grid-cols-3 items-center rounded-xl border px-5 h-14"
 >
   <LogoLink class="justify-self-start" />
-  <NavLinks class="justify-self-center" />
-  <ContactLink class="justify-self-end" />
+  <NavLinks class="justify-self-center hidden md:flex" />
+  <ContactLink class="justify-self-end hidden md:block" />
+  <MenuButton isOpen={false} class="justify-self-end md:hidden" id="menu-button" data-menu-open="false" />
 </header>
+
+<script>
+  class NavbarController {
+    private isMenuOpen = false;
+    private menuButton: HTMLElement | null;
+    private navbar: HTMLElement | null;
+
+    constructor() {
+      this.menuButton = document.getElementById('menu-button');
+      this.navbar = document.getElementById('navbar');
+      this.init();
+    }
+
+    private init() {
+      if (this.menuButton) {
+        this.menuButton.addEventListener('click', () => this.toggleMenu());
+      }
+    }
+
+    private toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+      console.log('Mobile menu is now:', this.isMenuOpen ? 'open' : 'closed');
+
+      if (this.navbar && this.isMenuOpen) {
+        this.navbar.classList.add("h-[calc(100dvh-2rem)]");
+        this.navbar.classList.remove("h-14");
+      } else {
+        this.navbar?.classList.remove("h-[calc(100dvh-2rem)]");
+        this.navbar?.classList.add("h-14");
+      }
+      
+      // Update the data attribute to communicate state to the MenuButton
+      if (this.menuButton) {
+        this.menuButton.setAttribute('data-menu-open', this.isMenuOpen.toString());
+        
+        // Dispatch a custom event to notify the MenuButton about the state change
+        this.menuButton.dispatchEvent(new CustomEvent('menu-state-changed', {
+          detail: { isOpen: this.isMenuOpen },
+          bubbles: true
+        }));
+      }
+    }
+
+    // Getter for external access to state
+    get menuState() {
+      return this.isMenuOpen;
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new NavbarController();
+  });
+
+  // Re-initialize on navigation (if using view transitions)
+  document.addEventListener('astro:page-load', () => {
+    new NavbarController();
+  });
+</script>

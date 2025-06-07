@@ -1,0 +1,42 @@
+---
+interface Props {
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+  id?: string;
+  'data-menu-open'?: string;
+}
+
+const { onClick, type = "button", class: additionalClass, id, 'data-menu-open': dataMenuOpen } = Astro.props as Props;
+---
+
+<button
+  id={id}
+  type={type}
+  data-menu-open={dataMenuOpen}
+  class:list={[
+    "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md",
+    "hover:bg-btn-secondary-hover active:bg-btn-secondary-hover",
+    "transition-colors duration-150",
+    additionalClass
+  ]}
+>
+  <slot />
+</button>
+
+<script>
+  // Handle click events on icon buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const iconButtons = document.querySelectorAll('button[type="button"], button[type="submit"], button[type="reset"]');
+    iconButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        // Dispatch a custom event that parent components can listen to
+        const iconButtonClickEvent = new CustomEvent('icon-button-click', {
+          bubbles: true,
+          detail: { button: event.target }
+        });
+        button.dispatchEvent(iconButtonClickEvent);
+      });
+    });
+  });
+</script> 

@@ -1,0 +1,106 @@
+---
+import IconButton from './IconButton.astro';
+
+const { onClick, class: className, id, 'data-menu-open': dataMenuOpen } = Astro.props;
+---
+
+<IconButton onClick={onClick} class={className} id={id} data-menu-open={dataMenuOpen}>
+  <svg
+    width="24px"
+    height="24px"
+    viewBox="0 0 24 24"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title>{dataMenuOpen ? "Close" : "Menu"}</title>
+    <g
+      id="icon-/-menu"
+      stroke="none"
+      stroke-width="1"
+      fill="none"
+      fill-rule="evenodd"
+      stroke-linejoin="round"
+    >
+      <line
+        x1="2"
+        y1="12"
+        x2="22"
+        y2="12"
+        stroke="currentColor"
+        stroke-width="2"
+        class="menu-line-1 transition-all duration-300 ease-in-out"
+        style="transform-origin: center;"
+      />
+      <line
+        x1="2"
+        y1="12"
+        x2="22"
+        y2="12"
+        stroke="currentColor"
+        stroke-width="2"
+        class="menu-line-2 transition-all duration-300 ease-in-out"
+        style="transform-origin: center;"
+      />
+    </g>
+  </svg>
+</IconButton>
+
+<script>
+  // Handle menu button animation based on state changes
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButtons = document.querySelectorAll('[data-menu-open]');
+    
+    menuButtons.forEach(button => {
+      // Function to update visual state based on data attribute
+      const updateVisualState = () => {
+        const isOpen = button.getAttribute('data-menu-open') === 'true';
+        const line1 = button.querySelector('.menu-line-1');
+        const line2 = button.querySelector('.menu-line-2');
+        
+        if (line1 && line2) {
+          if (isOpen) {
+            // Transform to X shape
+            line1.setAttribute('class', 'menu-line-1 transition-all duration-300 ease-in-out rotate-45');
+            line2.setAttribute('class', 'menu-line-2 transition-all duration-300 ease-in-out -rotate-45');
+          } else {
+            // Transform back to hamburger
+            line1.setAttribute('class', 'menu-line-1 transition-all duration-300 ease-in-out -translate-y-1');
+            line2.setAttribute('class', 'menu-line-2 transition-all duration-300 ease-in-out translate-y-1');
+          }
+        }
+      };
+      
+      // Listen for custom events from parent
+      button.addEventListener('menu-state-changed', updateVisualState);
+      
+      // Initialize state on load
+      updateVisualState();
+    });
+  });
+  
+  // Re-initialize on navigation (if using view transitions)
+  document.addEventListener('astro:page-load', () => {
+    const menuButtons = document.querySelectorAll('[data-menu-open]');
+    
+    menuButtons.forEach(button => {
+      const updateVisualState = () => {
+        const isOpen = button.getAttribute('data-menu-open') === 'true';
+        const line1 = button.querySelector('.menu-line-1');
+        const line2 = button.querySelector('.menu-line-2');
+        
+        if (line1 && line2) {
+          if (isOpen) {
+            line1.setAttribute('class', 'menu-line-1 transition-all duration-300 ease-in-out rotate-45');
+            line2.setAttribute('class', 'menu-line-2 transition-all duration-300 ease-in-out -rotate-45');
+          } else {
+            line1.setAttribute('class', 'menu-line-1 transition-all duration-300 ease-in-out -translate-y-1');
+            line2.setAttribute('class', 'menu-line-2 transition-all duration-300 ease-in-out translate-y-1');
+          }
+        }
+      };
+      
+      button.addEventListener('menu-state-changed', updateVisualState);
+      updateVisualState();
+    });
+  });
+</script>
