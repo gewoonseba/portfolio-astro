@@ -1,0 +1,13 @@
+---
+import ContactLink from "../buttons/ContactLink.astro";
+import LogoLink from "./LogoLink.astro";
+import NavLinks from "./NavLinks.astro";
+---
+
+<header
+  class="border-secondary grid h-14 grid-cols-3 items-center rounded-xl border px-5"
+>
+  <LogoLink class="justify-self-start" />
+  <NavLinks class="justify-self-center" />
+  <ContactLink class="justify-self-end" />
+</header>

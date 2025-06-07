@@ -1,0 +1,10 @@
+---
+const { class: className } = Astro.props;
+---
+
+<a
+  href="mailto:seba@gewoonseba.com?subject=Hi%20👋"
+  class:list={[className, "border-primary rounded-full border px-4 py-2"]}
+>
+  Contact
+</a>

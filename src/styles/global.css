@@ -43,7 +43,8 @@
   --text-color-primary: var(--neutral-100);
   --text-color-secondary: var(--neutral-200);
 
-  --border-color-primary: var(--neutral-100-5);
+  --border-color-primary: var(--neutral-100);
+  --border-color-secondary: var(--neutral-100-5);
 }
 
 /* MARK: - Custom utilities */
